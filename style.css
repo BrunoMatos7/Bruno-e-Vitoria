@@ -1,0 +1,184 @@
+/* Configurações básicas e background do corpo */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    
+    /* Fundo Azul Royal inicial */
+    background-color: #4169E1; 
+    background-image: none;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #fff; 
+    text-align: center;
+    transition: background-image 1s ease-in-out, background-color 1s; 
+}
+
+/* --- ESTILO: ENVELOPE BASEADO EM IMAGEM --- */
+.envelope-fechado {
+    /* Dimensões da arte final que criamos */
+    width: 450px; 
+    height: 300px; 
+    
+    background-color: transparent; 
+    
+    /* CHAVE: Imagem do envelope fechado como fundo */
+    background-image: url('envelope_fechado.png'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    border-radius: 5px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7); 
+    
+    cursor: pointer;
+    position: relative; 
+    z-index: 100;       
+    overflow: visible; 
+    padding: 0;         
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+/* --- SELO DE LACRE DOURADO --- */
+.selo-lacre {
+    width: 60px;
+    height: 60px;
+    background-color: #FFD700; /* Dourado */
+    border-radius: 50%; 
+    
+    position: absolute;
+    /* Posicionamento manual sobre o lacre da imagem (centro da div) */
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    
+    box-shadow: 0 2px 8px rgba(255, 215, 0, 0.8);
+    z-index: 103; 
+    transition: opacity 0.5s;
+}
+
+/* --- MENSAGEM DE CLIQUE (Pulsante) --- */
+.mensagem-clique {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* Move 10px para baixo do centro do selo */
+    transform: translate(-50%, 10px); 
+    
+    font-family: sans-serif;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #FFD700; /* Texto Dourado */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+    z-index: 104;
+    
+    transition: opacity 0.5s;
+    animation: pulse 2s infinite; 
+}
+
+/* Animação para o efeito pulsante */
+@keyframes pulse {
+    0% { transform: translate(-50%, 10px) scale(1); opacity: 1; }
+    50% { transform: translate(-50%, 10px) scale(1.05); opacity: 0.8; }
+    100% { transform: translate(-50%, 10px) scale(1); opacity: 1; }
+}
+
+/* Estado do envelope ABERTO (some) */
+.envelope-aberto {
+    opacity: 0; 
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+/* Faz o selo e a mensagem sumirem quando o envelope for aberto */
+.envelope-aberto .selo-lacre,
+.envelope-aberto .mensagem-clique {
+    opacity: 0;
+}
+
+
+/* Estilo do conteúdo do convite (após a abertura) */
+.convite-conteudo {
+    background-color: rgba(0, 0, 0, 0.6); 
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    opacity: 0; 
+    transform: translateY(20px); 
+    transition: opacity 1s, transform 1s;
+    position: absolute; 
+}
+
+/* Estilo para mostrar o conteúdo */
+.conteudo-visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estilos de Tipografia */
+header h2 { 
+    font-family: serif; 
+    font-size: 2.5em; 
+    margin-bottom: 5px; 
+}
+header h3 {
+    margin-top: 0;
+    font-weight: 300;
+}
+.informacoes p {
+    line-height: 1.5;
+}
+
+/* Estilos para os links de ícones */
+.links-uteis { 
+    display: flex; 
+    justify-content: space-around; 
+    margin-top: 30px; 
+}
+.icone-link { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    text-decoration: none; 
+    color: #fff; 
+    transition: color 0.3s; 
+}
+.icone-link:hover { 
+    color: #FFD700; /* Dourado no hover do ícone */
+}
+.icone-link i { 
+    font-size: 3em; 
+    margin-bottom: 5px; 
+    color: #FFD700; /* Ícones Dourados */
+}
+
+
+/* --- AJUSTE DE RESPONSIVIDADE (MEDIA QUERY) --- */
+@media (max-width: 480px) {
+    /* Ajuste para envelope de imagem */
+    .envelope-fechado {
+        width: 320px; 
+        height: 220px; 
+    }
+    .selo-lacre {
+        width: 50px; 
+        height: 50px;
+    }
+    .mensagem-clique {
+        font-size: 1em;
+    }
+    
+    /* Ajuste de fontes */
+    header h2 {
+        font-size: 1.8em;
+    }
+    .icone-link i {
+        font-size: 2em;
+    }
+}
