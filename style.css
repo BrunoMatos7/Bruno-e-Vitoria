@@ -19,9 +19,8 @@ body {
     transition: background-image 1s ease-in-out, background-color 1s; 
 }
 
-/* --- ESTILO: ENVELOPE BASEADO EM IMAGEM --- */
+/* --- ENVELOPE BASEADO EM IMAGEM (FINAL) --- */
 .envelope-fechado {
-    /* Dimensões da arte final que criamos */
     width: 450px; 
     height: 300px; 
     
@@ -29,7 +28,7 @@ body {
     
     /* CHAVE: Imagem do envelope fechado como fundo */
     background-image: url('envelope_fechado.png'); 
-    background-size: cover;
+    background-size: contain; /* Garante que a imagem caiba perfeitamente no espaço */
     background-repeat: no-repeat;
     background-position: center;
     
@@ -44,31 +43,15 @@ body {
     transition: opacity 0.5s, transform 0.5s;
 }
 
-/* --- SELO DE LACRE DOURADO --- */
-.selo-lacre {
-    width: 60px;
-    height: 60px;
-    background-color: #FFD700; /* Dourado */
-    border-radius: 50%; 
-    
-    position: absolute;
-    /* Posicionamento manual sobre o lacre da imagem (centro da div) */
-    top: 50%; 
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    
-    box-shadow: 0 2px 8px rgba(255, 215, 0, 0.8);
-    z-index: 103; 
-    transition: opacity 0.5s;
-}
-
-/* --- MENSAGEM DE CLIQUE (Pulsante) --- */
+/* --- MENSAGEM DE CLIQUE FINAL (Dourado Pulsante) --- */
 .mensagem-clique {
     position: absolute;
-    top: 50%;
+    
+    /* NOVO POSICIONAMENTO (Centralizado sobre o lacre da imagem) */
+    top: 45%; 
     left: 50%;
-    /* Move 10px para baixo do centro do selo */
-    transform: translate(-50%, 10px); 
+    
+    transform: translate(-50%, 0); /* Apenas centraliza horizontalmente */
     
     font-family: sans-serif;
     font-size: 1.2em;
@@ -83,9 +66,9 @@ body {
 
 /* Animação para o efeito pulsante */
 @keyframes pulse {
-    0% { transform: translate(-50%, 10px) scale(1); opacity: 1; }
-    50% { transform: translate(-50%, 10px) scale(1.05); opacity: 0.8; }
-    100% { transform: translate(-50%, 10px) scale(1); opacity: 1; }
+    0% { transform: translate(-50%, 0) scale(1); opacity: 1; }
+    50% { transform: translate(-50%, 0) scale(1.05); opacity: 0.8; }
+    100% { transform: translate(-50%, 0) scale(1); opacity: 1; }
 }
 
 /* Estado do envelope ABERTO (some) */
@@ -95,8 +78,7 @@ body {
     pointer-events: none;
 }
 
-/* Faz o selo e a mensagem sumirem quando o envelope for aberto */
-.envelope-aberto .selo-lacre,
+/* Faz a mensagem de clique sumir quando o envelope for aberto */
 .envelope-aberto .mensagem-clique {
     opacity: 0;
 }
@@ -166,12 +148,10 @@ header h3 {
         width: 320px; 
         height: 220px; 
     }
-    .selo-lacre {
-        width: 50px; 
-        height: 50px;
-    }
+    
     .mensagem-clique {
         font-size: 1em;
+        top: 40%; /* Ajusta a posição para o lacre da imagem menor */
     }
     
     /* Ajuste de fontes */
